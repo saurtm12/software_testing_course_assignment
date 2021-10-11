@@ -1,0 +1,35 @@
+{
+    "root": true,
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-dupe-else-if": ["error"],
+      "eqeqeq": ["error", "always"],
+      "no-implicit-globals": "error",
+      "no-redeclare": "error",
+      "no-promise-executor-return": "error",
+      "no-undef": "error",
+      "no-unused-vars": ["error", {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+        }
+      ],
+      "no-var": "error",
+      "prefer-const": "warn",
+      "no-unreachable": "error",
+      "no-self-assign": "warn",
+      "no-shadow": "warn",
+      "prefer-object-spread": "warn"
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
+    }
+  }
+  
