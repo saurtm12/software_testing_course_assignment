@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "node"
+script: echo "Running tests against $(node -v)..."
+env:
+  - ARTIFACTS_PATHS="./test-report.html"
+  - CAN_FAIL=false
+jobs:
+  allow_failures: 
+    env:
+      - CAN_FAIL=true
+  include:
+    - stage: Linting
+      script: npm run lint
+    - stage: Testing & producing coverage
+      env:
+       - CAN_FAIL=true
+      node_js: node
+      script: jest --coverage && cat ./coverage/lcov.info | coveralls
+    - stage: Generating coverage
+      script: coveralls < coverage/lcov.info
+    - stage: Save artifact
+      api_key: '$GITHUB_API_KEY'
+      file: 'test_report.html'
+      skip_cleanup: true
+      on:
+        tags

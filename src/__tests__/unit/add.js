@@ -13,7 +13,7 @@ describe("add should sum two numbers", () => {
 
   it("should sum both negative and positive integers", () => {
     const sum = add(-6, 4);
-    expect(sum).toBe(2);
+    expect(sum).toBe(-2);
   });
 
   it("sum of a number and zero is the number itself", () => {
