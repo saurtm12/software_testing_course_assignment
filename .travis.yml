@@ -11,7 +11,9 @@ jobs:
       - CAN_FAIL=true
   include:
     - stage: Linting
-      script: npm run lint
+      script: npm run lint > lint.txt
+      env:
+       - CAN_FAIL=true
     - stage: Testing & producing coverage
       env:
        - CAN_FAIL=true
@@ -21,7 +23,10 @@ jobs:
       script: coveralls < coverage/lcov.info
     - stage: Save artifact
       api_key: '$GITHUB_API_KEY'
-      file: 'test_report.html'
+      file: 
+        name: 'test_report.html'
+      file: 
+        name: 'lint.txt'
       skip_cleanup: true
       on:
         tags
