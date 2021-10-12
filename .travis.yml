@@ -10,6 +10,7 @@ jobs:
     env:
       - CAN_FAIL=true
   include:
+    - stage: Linting & Test & Report
       script: 
         - npm run lint > lint.txt
         - jest --coverage && cat ./coverage/lcov.info | coveralls
@@ -29,5 +30,7 @@ jobs:
           git push -f -q https://saurtm12:$GITHUB_API_KEY@github.com/saurtm12/software_testing_course_assignment-gh-pages gh-pages &>/dev/null
           cd "$TRAVIS_BUILD_DIR"
         fi
-      env:
-       - CAN_FAIL=true
+    env:
+      - CAN_FAIL=true
+    on:
+      tags
