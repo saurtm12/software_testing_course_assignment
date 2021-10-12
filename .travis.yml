@@ -10,23 +10,19 @@ jobs:
     env:
       - CAN_FAIL=true
   include:
-    - stage: Linting
-      script: npm run lint > lint.txt
+      script: 
+        - npm run lint > lint.txt
+        - jest --coverage && cat ./coverage/lcov.info | coveralls
+        - coveralls < coverage/lcov.info
+        - ls
+
       env:
        - CAN_FAIL=true
-    - stage: Testing & producing coverage
-      env:
-       - CAN_FAIL=true
-      node_js: node
-      script: jest --coverage && cat ./coverage/lcov.info | coveralls
-    - stage: Generating coverage
-      script: coveralls < coverage/lcov.info
-    - stage: Save artifact
+      
       api_key: '$GITHUB_API_KEY'
       file: 
-        name: 'test_report.html'
-      file: 
-        name: 'lint.txt'
+        - 'test_report.html' 
+        - 'lint.txt'
       skip_cleanup: true
       on:
         tags
