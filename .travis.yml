@@ -19,8 +19,6 @@ jobs:
       env:
         - CAN_FAIL=true
       node_js: node
-        jest --coverage && cat ./coverage/lcov.info | coveralls &&
-        coveralls < coverage/lcov.info
 
     - stage: Generating coverage
       script: coveralls < coverage/lcov.info
