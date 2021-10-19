@@ -15,10 +15,9 @@ jobs:
         - CAN_FAIL=true
       
     - stage: Test and Report
-      script: jest --coverage && cat ./coverage/lcov.info | coveralls
       env:
         - CAN_FAIL=true
-      node_js: node
+      script: jest --coverage && cat ./coverage/lcov.info | coveralls
 
     - stage: Generating coverage
       script: coveralls < coverage/lcov.info
