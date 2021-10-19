@@ -1,27 +1,12 @@
 language: node_js
 node_js:
   - "node"
+script: echo "Running tests against $(node -v)..."
 
 jobs:
-  allow_failures: 
-    env:
-      - CAN_FAIL=true
   include:
     - stage: Linting and Test and Report
       script: 
         npm run lint > lint.txt &&
         jest --coverage && cat ./coverage/lcov.info | coveralls &&
-        coveralls < coverage/lcov.info &&
-      env:
-        - CAN_FAIL=true
-      on:
-        tags
-
-deploy:
-  provider: releases
-  api_key: '$GITHUB_API_KEY'
-  file: "./test-report.html"
-  skip_cleanup: true
-  on:
-    all_branches: true
-    tags: true
+        coveralls < coverage/lcov.info

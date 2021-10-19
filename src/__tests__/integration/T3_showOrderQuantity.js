@@ -50,7 +50,7 @@ function addProductToCart(product) {
 }
 
 it("Count number of identical items added to the cart correctly", () => {
-    let newCart = [ 
+    const newCart = [ 
         {
             id: 1,
             name: "apple pie cupcake", 
