@@ -4,6 +4,10 @@ node_js:
 script: echo "Running tests against $(node -v)..."
 
 jobs:
+  allow_failures:
+    env:
+      - CAN_FAIL=true
+  
   include:
     - stage: Linting and Test and Report
       script: npm run lint
