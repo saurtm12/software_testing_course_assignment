@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/saurtm12/software_testing_course_assignment.svg?branch=master)](https://app.travis-ci.com/saurtm12/software_testing_course_assignment)
+[![Coverage Status](https://coveralls.io/repos/github/saurtm12/software_testing_course_assignment/badge.svg?branch=master)](https://coveralls.io/github/saurtm12/software_testing_course_assignment?branch=master)
 # Student template
 
 ## Purpose of this repository
