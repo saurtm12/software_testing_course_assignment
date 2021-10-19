@@ -6,7 +6,17 @@ script: echo "Running tests against $(node -v)..."
 jobs:
   include:
     - stage: Linting and Test and Report
-      script: 
-        npm run lint > lint.txt &&
+      script: npm run lint
+      env:
+        - CAN_FAIL=true
+      
+    - stage: Test and Report
+      script: jest --coverage && cat ./coverage/lcov.info | coveralls
+      env:
+        - CAN_FAIL=true
+      node_js: node
         jest --coverage && cat ./coverage/lcov.info | coveralls &&
         coveralls < coverage/lcov.info
+
+    - stage: Generating coverage
+      script: coveralls < coverage/lcov.info
